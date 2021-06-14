@@ -58,6 +58,9 @@ static afb_event_t get_event_from_value(struct navigation_state *ns,
 	if (!g_strcmp0(value, "waypoints"))
 		return ns->waypoints_event;
 
+	if (!g_strcmp0(value, "destination"))
+		return ns->destination_event;
+
 	return NULL;
 }
 
@@ -72,6 +75,9 @@ static json_object **get_storage_from_value(struct navigation_state *ns,
 
 	if (!g_strcmp0(value, "waypoints"))
 		return &ns->waypoints_storage;
+
+	if (!g_strcmp0(value, "destination"))
+		return &ns->destination_storage;
 
 	return NULL;
 }
@@ -216,6 +222,18 @@ static void broadcast_waypoints(afb_req_t request)
 	//       here.
 }
 
+static void broadcast_destination(afb_req_t request)
+{
+	json_object* jresp = afb_req_json(request);
+	broadcast(jresp, "destination", TRUE);
+
+	afb_req_success(request, NULL, "Broadcast destination send");
+
+	// NOTE: If the Alexa SDK API for pushing local navigation
+	//       updates gets exposed, send update to vshl-capabilities
+	//       here.
+}
+
 static void handle_setDestination_event(struct json_object *object)
 {
 	json_object *jdest = NULL;
@@ -319,10 +337,12 @@ static int init(afb_api_t api)
 	ns->status_event = afb_daemon_make_event("status");
 	ns->position_event = afb_daemon_make_event("position");
 	ns->waypoints_event = afb_daemon_make_event("waypoints");
+	ns->destination_event = afb_daemon_make_event("destination");
 
 	if (!afb_event_is_valid(ns->status_event) ||
 	    !afb_event_is_valid(ns->position_event) ||
-	    !afb_event_is_valid(ns->waypoints_event)) {
+	    !afb_event_is_valid(ns->waypoints_event) ||
+		!afb_event_is_valid(ns->destination_event)) {
 		AFB_ERROR("Cannot create events");
 		return -EINVAL;
 	}
@@ -356,6 +376,10 @@ static const afb_verb_t binding_verbs[] = {
 		.verb = "broadcast_waypoints",
 		.callback = broadcast_waypoints,
 		.info = "Broadcast out waypoint event"
+	},{
+		.verb = "broadcast_destination",
+		.callback = broadcast_destination,
+		.info = "Broadcast out destination event"
 	},
 	{}
 };

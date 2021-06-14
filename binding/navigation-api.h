@@ -40,11 +40,13 @@ struct navigation_state {
 	afb_event_t status_event;
 	afb_event_t position_event;
 	afb_event_t waypoints_event;
+	afb_event_t destination_event;
 
 	// storage
 	json_object *status_storage;
 	json_object *position_storage;
 	json_object *waypoints_storage;
+	json_object *destination_storage;
 
 	// locking
 	GRWLock rw_lock;
