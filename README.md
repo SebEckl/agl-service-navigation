@@ -73,8 +73,20 @@ Populate same data referenced in *destination Event* section for the event
 {
   "points": [
     {
-      "latitude": 36.12906,
-      "longitude": -115.17908
+      "waypoints": [
+        {
+          "latitude": 36.12906,
+          "longitude": -115.17908
+        }
+      ]      
+    },
+    {
+      "destination": [
+        {
+          "latitude": 36.24906,
+          "longitude": -115.37288
+        }
+      ]      
     }
   ]
 }
