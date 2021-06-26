@@ -46,6 +46,9 @@ struct navigation_state *navigation_get_userdata(void)
 	return afb_api_get_userdata(g_api);
 }
 
+/*
+* get event for subscription depending on value
+*/
 static afb_event_t get_event_from_value(struct navigation_state *ns,
 			const char *value)
 {
@@ -64,6 +67,9 @@ static afb_event_t get_event_from_value(struct navigation_state *ns,
 	return NULL;
 }
 
+/*
+* get storage depending on Value
+*/
 static json_object **get_storage_from_value(struct navigation_state *ns,
 			const char *value)
 {
@@ -82,6 +88,9 @@ static json_object **get_storage_from_value(struct navigation_state *ns,
 	return NULL;
 }
 
+/*
+* subscribe/unsubscribe to an event depnding on it's name
+*/
 static void navigation_subscribe_unsubscribe(afb_req_t request,
 		gboolean unsub)
 {
@@ -133,6 +142,9 @@ static void navigation_subscribe_unsubscribe(afb_req_t request,
 			value);
 }
 
+/*
+* subscribe & unsubscribe handlers for corresponding verbs
+*/
 static void subscribe(afb_req_t request)
 {
 	navigation_subscribe_unsubscribe(request, FALSE);
@@ -143,6 +155,9 @@ static void unsubscribe(afb_req_t request)
 	navigation_subscribe_unsubscribe(request, TRUE);
 }
 
+/*
+* broadcast brodcast information depending on name
+*/
 static void broadcast(json_object *jresp, const char *name, gboolean cache)
 {
 	struct navigation_state *ns = navigation_get_userdata();
@@ -179,6 +194,9 @@ static void broadcast(json_object *jresp, const char *name, gboolean cache)
 	afb_event_push(event, tmp);
 }
 
+/*
+* broadcast_status verb handler
+*/
 static void broadcast_status(afb_req_t request)
 {
 	json_object *jresp = afb_req_json(request);
@@ -191,6 +209,9 @@ static void broadcast_status(afb_req_t request)
 	//       here.
 }
 
+/*
+* broadcast_position verb handler
+*/
 static void broadcast_position(afb_req_t request)
 {
 	const char *position = afb_req_value(request, "position");
@@ -210,6 +231,9 @@ static void broadcast_position(afb_req_t request)
 	//       here.
 }
 
+/*
+* broadcast_waypoints verb handler
+*/
 static void broadcast_waypoints(afb_req_t request)
 {
 	json_object *jresp = afb_req_json(request);
@@ -222,6 +246,9 @@ static void broadcast_waypoints(afb_req_t request)
 	//       here.
 }
 
+/*
+* broadcast_destiantion verb handler
+*/
 static void broadcast_destination(afb_req_t request)
 {
 	json_object* jresp = afb_req_json(request);
@@ -301,6 +328,9 @@ static void onevent(afb_api_t api, const char *event, struct json_object *object
 	}
 }
 
+/*
+* Init for the AGL binding
+*/
 static int init(afb_api_t api)
 {
 	struct navigation_state *ns;
@@ -355,6 +385,9 @@ static int init(afb_api_t api)
 	return 0;
 }
 
+/*
+* verbs of the agl-service-navigation
+*/
 static const afb_verb_t binding_verbs[] = {
 	{
 		.verb = "subscribe",
@@ -388,7 +421,7 @@ static const afb_verb_t binding_verbs[] = {
  * description of the binding for afb-daemon
  */
 const afb_binding_t afbBindingV3 = {
-	.api = "navigation",
+	.api = "navigation-v2",
 	.verbs = binding_verbs,
 	.onevent = onevent,
 	.init = init,
