@@ -260,73 +260,6 @@ static void broadcast_destination(afb_req_t request)
 	//       updates gets exposed, send update to vshl-capabilities
 	//       here.
 }
-/*
-static void handle_setDestination_event(struct json_object *object)
-{
-	json_object *jdest = NULL;
-	json_object_object_get_ex(object, "destination", &jdest);
-	if(!jdest) {
-		AFB_WARNING("setDestination event missing destination element");
-		return;
-	}
-
-	json_object *jcoord = NULL;
-	json_object_object_get_ex(jdest, "coordinate", &jcoord);
-	if(!jcoord) {
-		AFB_WARNING("setDestination event missing coordinate element");
-		return;
-	}
-
-	json_object *jlat = NULL;
-	json_object_object_get_ex(jcoord, "latitudeInDegrees", &jlat);
-	if(!jlat)
-		return;
-	errno = 0;
-	double lat = json_object_get_double(jlat);
-	if(errno != 0)
-		return;
-
-	json_object *jlon = NULL;
-	json_object_object_get_ex(jcoord, "longitudeInDegrees", &jlon);
-	if(!jlon)
-		return;
-	double lon = json_object_get_double(jlon);
-	if(errno != 0)
-		return;
-
-	json_object *jobj = json_object_new_object();
-	json_object *jpoints = json_object_new_array();
-	json_object *jpoint = json_object_new_object();
-	jlat = json_object_new_double(lat);
-	jlon = json_object_new_double(lon);
-	json_object_object_add(jpoint, "latitude", jlat);
-	json_object_object_add(jpoint, "longitude", jlon);
-	json_object_array_add(jpoints, jpoint);
-	json_object_object_add(jobj, "points", jpoints);
-	broadcast(jobj, "waypoints", TRUE);
-}
-
-static void handle_cancelNavigation_event(struct json_object *object)
-{
-	json_object *jobj = json_object_new_object();
-	json_object *jstate = json_object_new_string("stop");
-	json_object_object_add(jobj, "state", jstate);
-	broadcast(jobj, "status", TRUE);
-}
-
-static void onevent(afb_api_t api, const char *event, struct json_object *object)
-{
-	if(!event)
-		return;
-
-	if(strcmp(event, "vshl-capabilities/setDestination") == 0) {
-		handle_setDestination_event(object);
-	} else if(strcmp(event, "vshl-capabilities/cancelNavigation") == 0) {
-		handle_cancelNavigation_event(object);
-	} else {
-		AFB_WARNING("Unhandled vshl-capabilities event");
-	}
-}*/
 
 /*
 * Init for the AGL binding
@@ -423,6 +356,5 @@ static const afb_verb_t binding_verbs[] = {
 const afb_binding_t afbBindingV3 = {
 	.api = "navigationv2",
 	.verbs = binding_verbs,
-	//.onevent = onevent,
 	.init = init,
 };
