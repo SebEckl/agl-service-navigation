@@ -7,13 +7,14 @@ and state between each other.
 
 ## Verbs
 
-| Name                | Description                                 | JSON Response                      |
-|---------------------|---------------------------------------------|------------------------------------|
-| subscribe           | subscribe to an navigation service          | *Request:* {"value": "status"}     |
-| unsubscribe         | unsubscribe to an navigation service        | *Request:* {"value": "status"}     |
-| broadcast_status    | broadcast status event to other clients     | *Request:* {"state": "stop"}       |
-| broadcast_position  | broadcast position event to other clients   | See *position Verb* section        |
-| broadcast_waypoints | broadcast waypoints events to other clients | See *waypoints Verb* section       |
+| Name                 | Description                                  | JSON Response                      |
+|----------------------|----------------------------------------------|------------------------------------|
+| subscribe            | subscribe to an navigation service           | *Request:* {"value": "status"}     |
+| unsubscribe          | unsubscribe to an navigation service         | *Request:* {"value": "status"}     |
+| broadcast_status     | broadcast status event to other clients      | *Request:* {"state": "stop"}       |
+| broadcast_position   | broadcast position event to other clients    | See *position Verb* section        |
+| broadcast_waypoints  | broadcast waypoints events to other clients  | See *waypoints Verb* section       |
+| broadcast_destination| broadcast destination events to other clients| See *destination Verb* section     |
 
 
 ### broadcast_position Verb
@@ -24,6 +25,10 @@ Populate same data referenced in *position Event* section for the event
 
 Populate same data referenced in *waypoints Event* section for the event
 
+### broadcast_destination Verb
+
+Populate same data referenced in *destination Event* section for the event
+
 ## Events
 
 | Name           | Description                         |
@@ -31,6 +36,7 @@ Populate same data referenced in *waypoints Event* section for the event
 | status         | status of the navigation engine     |
 | position       | current route or car position event |
 | waypoints      | waypoints for routing engine        |
+| destination    | destination for routing engine      |
 
 ### position Event
 
@@ -56,6 +62,31 @@ Populate same data referenced in *waypoints Event* section for the event
     {
       "latitude": 36.12906,
       "longitude": -115.17908
+    }
+  ]
+}
+</pre>
+
+### destination Event
+
+<pre>
+{
+  "points": [
+    {
+      "waypoints": [
+        {
+          "latitude": 36.12906,
+          "longitude": -115.17908
+        }
+      ]      
+    },
+    {
+      "destination": [
+        {
+          "latitude": 36.24906,
+          "longitude": -115.37288
+        }
+      ]      
     }
   ]
 }
