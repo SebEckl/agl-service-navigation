@@ -421,7 +421,7 @@ static const afb_verb_t binding_verbs[] = {
  * description of the binding for afb-daemon
  */
 const afb_binding_t afbBindingV3 = {
-	.api = "navigation-v2",
+	.api = "navigationv2",
 	.verbs = binding_verbs,
 	.onevent = onevent,
 	.init = init,

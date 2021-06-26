@@ -18,17 +18,17 @@
 
 # Project Info
 # ------------------
-set(PROJECT_NAME agl-service-navigation-v2)
+set(PROJECT_NAME agl-service-navigationv2)
 set(PROJECT_VERSION "1.0")
 set(PROJECT_PRETTY_NAME "Navigation service for AGL")
 set(PROJECT_DESCRIPTION "Navigation reporting proxy for consumers")
-set(PROJECT_URL "https://gerrit.automotivelinux.org/gerrit/apps/agl-service-navigation")
+set(PROJECT_URL "https://github.com/SebEckl/agl-service-navigation.git")
 set(PROJECT_ICON "icon.png")
 set(PROJECT_AUTHOR "Matt Ranostay - Edited by Sebastian Eckl")
 set(PROJECT_AUTHOR_MAIL "matt.ranostay@konsulko.com")
 set(PROJECT_LICENSE "APL2.0")
 set(PROJECT_LANGUAGES,"C")
-set(API_NAME "navigation-v2")
+set(API_NAME "navigationv2")
 
 # Where the project configuration files are stored
 set(PROJECT_CMAKE_CONF_DIR "conf.d")
@@ -119,7 +119,7 @@ set(WIDGET_TYPE application/vnd.agl.service)
 # This is the file that will be executed, loaded,
 # at launch time by the application framework.
 #
-set(WIDGET_ENTRY_POINT lib/libafm-navigation-v2-binding.so)
+set(WIDGET_ENTRY_POINT lib/libafm-navigationv2-binding.so)
 
 # Print a helper message when every thing is finished
 # ----------------------------------------------------
