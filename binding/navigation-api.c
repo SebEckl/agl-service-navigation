@@ -260,7 +260,7 @@ static void broadcast_destination(afb_req_t request)
 	//       updates gets exposed, send update to vshl-capabilities
 	//       here.
 }
-
+/*
 static void handle_setDestination_event(struct json_object *object)
 {
 	json_object *jdest = NULL;
@@ -326,7 +326,7 @@ static void onevent(afb_api_t api, const char *event, struct json_object *object
 	} else {
 		AFB_WARNING("Unhandled vshl-capabilities event");
 	}
-}
+}*/
 
 /*
 * Init for the AGL binding
@@ -423,6 +423,6 @@ static const afb_verb_t binding_verbs[] = {
 const afb_binding_t afbBindingV3 = {
 	.api = "navigationv2",
 	.verbs = binding_verbs,
-	.onevent = onevent,
+	//.onevent = onevent,
 	.init = init,
 };
