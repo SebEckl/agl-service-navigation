@@ -1,8 +1,8 @@
-# Navigation Service
+# Navigationv2 Service
 
 ## Overview
 
-Navigation service keeps track of application data that allows other clients to share location, waypoints,
+Navigationv2 service keeps track of application data that allows other clients to share location, waypoints,
 and state between each other.
 
 ## Verbs
