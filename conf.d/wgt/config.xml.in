@@ -13,7 +13,7 @@
 	</feature>
 
 	<feature name="urn:AGL:widget:provided-api">
-		<param name="navigation" value="ws" />
+		<param name="navigationv2" value="ws" />
 	</feature>
 
 	<feature name="urn:AGL:widget:required-api">
