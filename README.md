@@ -11,7 +11,6 @@ and state between each other.
 |----------------------|----------------------------------------------|------------------------------------|
 | subscribe            | subscribe to an navigation service           | *Request:* {"value": "status"}     |
 | unsubscribe          | unsubscribe to an navigation service         | *Request:* {"value": "status"}     |
-| broadcast_status     | broadcast status event to other clients      | *Request:* {"state": "stop"}       |
 | broadcast_position   | broadcast position event to other clients    | See *position Verb* section        |
 | broadcast_waypoints  | broadcast waypoints events to other clients  | See *waypoints Verb* section       |
 | broadcast_destination| broadcast destination events to other clients| See *destination Verb* section     |
